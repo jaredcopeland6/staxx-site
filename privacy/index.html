@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Staxx Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #eaeaea; background: #111; }
+    a { color: #7db3ff; }
+    code { background: #222; }
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  h2 { font-size: 1.15rem; margin-top: 2.2em; }
+  .updated { color: #777; font-size: 0.9rem; margin-bottom: 2em; }
+  ul { padding-left: 1.3em; }
+  li { margin-bottom: 0.5em; }
+  code { background: #f2f2f2; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<h1>Staxx Privacy Policy</h1>
+<p class="updated">Last updated: October 8, 2026</p>
+
+<p>
+  Staxx is a social book-tracking app: you rank books you've read against each
+  other, keep a shelf of what you want to read, and see what people you follow
+  are reading. This page describes exactly what the app collects, why, and who
+  can see it - matched to what the app actually does, not a generic template.
+</p>
+
+<h2>Information we collect</h2>
+<ul>
+  <li><strong>Email address</strong> - collected at sign-up and managed by our
+    authentication provider, Supabase Auth. We use it to identify your account
+    and for account-related emails (e.g. confirming your address). We never see
+    or store your password ourselves.</li>
+  <li><strong>Username</strong> - the display name other users see.</li>
+  <li><strong>Profile picture</strong> - optional. If you choose one, the
+    image is resized on your device and stored by our backend provider. You
+    can replace it at any time, and deleting your account deletes it. See
+    "Who can see your information" for an important note about how it is
+    served.</li>
+  <li><strong>Books you shelve and rank</strong> - which books you've marked as
+    to-be-read, currently reading, or read, plus the 0-10 score and rank
+    position each ranked book receives.</li>
+  <li><strong>Pairwise comparison choices</strong> - when you rank a book, the
+    app asks you to compare it against a few books you've already ranked. We
+    keep a permanent log of those choices so your ranking history can be
+    audited and so the ranking algorithm can improve later without losing that
+    history. This log is private to you - see "Who can see your information"
+    below.</li>
+  <li><strong>Follows</strong> - who you follow and who follows you.</li>
+  <li><strong>Tag suggestions</strong> - if you suggest a descriptive tag
+    (genre or vibe) for a book, we record which tag and which book; we do not
+    publicly attribute a specific suggestion to your account in the app's
+    display, but the row itself, like other social data in the app, is
+    readable via the same access described below.</li>
+  <li><strong>Activity</strong> - a record of your shelf changes and rankings,
+    used to build the activity feed shown to people who follow you.</li>
+</ul>
+<p>
+  We do not collect your real name, phone number, address, payment
+  information, or precise location, because the app doesn't use any of those.
+</p>
+
+<h2>Who can see your information</h2>
+<p>
+  Staxx is a social app, and most of the data above is visible to other
+  signed-in users, not only people who follow you - this is true today of your
+  rankings, your shelf, your follows/followers list, and your activity. Your
+  pairwise comparison choices are the one exception: only you can see those.
+</p>
+<p>
+  <strong>Your profile picture is more public than the rest.</strong> Unlike
+  everything above, which requires a signed-in account to read, a profile
+  picture is served from a public web address. Anyone who has that address can
+  view the image without signing in to Staxx, and it may be cached by browsers
+  or content delivery networks after you replace or delete it. Addresses are
+  not listed or published anywhere, so this is not the same as the image being
+  searchable - but please treat a profile picture as public, and don't upload
+  anything you would not want seen outside the app. Only you can change or
+  remove your own picture.
+</p>
+
+<h2>How we use your information</h2>
+<p>
+  To run the core features of the app: showing your ranked shelf, predicting a
+  "Personal Score" for books you haven't read yet based on your own ranking
+  history and your friends' rankings, and building the activity feed. We do
+  not use your information for advertising, and we do not sell your
+  information to anyone.
+</p>
+
+<h2>Third-party services we use</h2>
+<ul>
+  <li><strong>Open Library</strong> - when you search for or add a book, we
+    send that search to Open Library's public API to fetch its title, author,
+    cover image, and description. No account information is included in that
+    request.</li>
+  <li><strong>Anthropic (Claude)</strong> - we use Anthropic's AI models to
+    classify a book's genre and tags. Only the book's own public metadata
+    (title, author, subjects, description) is sent for this - never your
+    email, username, or reading history.</li>
+  <li><strong>Supabase</strong> - our backend provider, which hosts our
+    database, handles authentication, and runs our server-side code. Supabase
+    processes all of the data described above on our behalf, under its own
+    security and privacy commitments.</li>
+</ul>
+<p>
+  We do not use any third-party advertising or analytics services today.
+</p>
+
+<h2>Data retention and deletion</h2>
+<p>
+  You can permanently delete your account at any time from inside the app:
+  <strong>Profile → Settings → Delete account</strong>. Deleting your account
+  immediately and permanently removes your rankings, shelf items, comparison
+  history, follows and followers, activity, tag suggestions, and your profile
+  - this cannot be undone.
+</p>
+
+<h2>Children's privacy</h2>
+<p>
+  Staxx is not directed at children under 13, and we do not knowingly collect
+  personal information from children under 13.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If this policy changes, we'll update the "Last updated" date above.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions about this policy or your data: <a href="mailto:admin@staxxbooks.com">admin@staxxbooks.com</a>
+</p>
+
+</body>
+</html>
