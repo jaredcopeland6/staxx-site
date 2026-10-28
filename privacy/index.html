@@ -31,7 +31,7 @@
 <body>
 
 <h1>Staxx Privacy Policy</h1>
-<p class="updated">Last updated: October 8, 2026</p>
+<p class="updated">Last updated: October 27, 2026</p>
 
 <p>
   Staxx is a social book-tracking app: you rank books you've read against each
@@ -46,7 +46,12 @@
     authentication provider, Supabase Auth. We use it to identify your account
     and for account-related emails (e.g. confirming your address). We never see
     or store your password ourselves.</li>
-  <li><strong>Username</strong> - the display name other users see.</li>
+  <li><strong>Username</strong> - your unique @handle, which other users
+    see.</li>
+  <li><strong>Display name</strong> - optional, up to 40 characters. If you
+    set one, it's shown on your profile, in the activity feed and in people
+    search, alongside your username. It can be any name you like, including
+    your real name. You can change or clear it at any time in Edit profile.</li>
   <li><strong>Profile picture</strong> - optional. If you choose one, the
     image is resized on your device and stored by our backend provider. You
     can replace it at any time, and deleting your account deletes it. See
@@ -54,7 +59,11 @@
     served.</li>
   <li><strong>Books you shelve and rank</strong> - which books you've marked as
     to-be-read, currently reading, or read, plus the 0-10 score and rank
-    position each ranked book receives.</li>
+    position each ranked book receives, and the date you finished each book you
+    mark read (filled in automatically when you mark it read, and editable).</li>
+  <li><strong>Written reviews</strong> - optional. If you write a review of a
+    book you've ranked (up to 15,000 characters), it's saved with that ranking
+    and shown with it.</li>
   <li><strong>Pairwise comparison choices</strong> - when you rank a book, the
     app asks you to compare it against a few books you've already ranked. We
     keep a permanent log of those choices so your ranking history can be
@@ -69,18 +78,30 @@
     readable via the same access described below.</li>
   <li><strong>Activity</strong> - a record of your shelf changes and rankings,
     used to build the activity feed shown to people who follow you.</li>
+  <li><strong>Blocks and reports</strong> - if you block someone, we record
+    that so the two of you are hidden from each other. If you report someone,
+    we record who you reported, the reason you picked, and any note you add.
+    We also record when you agreed to our Terms of Use and this policy at
+    sign-up.</li>
 </ul>
 <p>
-  We do not collect your real name, phone number, address, payment
+  We do not ask for your real name, phone number, address, payment
   information, or precise location, because the app doesn't use any of those.
+  If you choose to use your real name as your display name, it is visible to
+  other users like the rest of your profile.
 </p>
 
 <h2>Who can see your information</h2>
 <p>
   Staxx is a social app, and most of the data above is visible to other
   signed-in users, not only people who follow you - this is true today of your
-  rankings, your shelf, your follows/followers list, and your activity. Your
-  pairwise comparison choices are the one exception: only you can see those.
+  username and display name, your rankings and written reviews, your shelf
+  (including finish dates), your follows/followers list, and your activity.
+  Some things are private: only you can see your pairwise comparison choices
+  and your list of blocked accounts, and nobody you report can see that you
+  reported them - reports are read only by Staxx's moderator. Someone you have
+  blocked can't see any of your information in the app, and you can't see
+  theirs.
 </p>
 <p>
   <strong>Your profile picture is more public than the rest.</strong> Unlike
@@ -98,9 +119,11 @@
 <p>
   To run the core features of the app: showing your ranked shelf, predicting a
   "Personal Score" for books you haven't read yet based on your own ranking
-  history and your friends' rankings, and building the activity feed. We do
-  not use your information for advertising, and we do not sell your
-  information to anyone.
+  history and your friends' rankings, and building the activity feed. We also
+  use reports to review content and accounts against our Terms of Use, which
+  can mean removing a review, profile picture, username or display name, or
+  suspending an account. We do not use your information for advertising, and
+  we do not sell your information to anyone.
 </p>
 
 <h2>Third-party services we use</h2>
@@ -126,9 +149,11 @@
 <p>
   You can permanently delete your account at any time from inside the app:
   <strong>Profile → Settings → Delete account</strong>. Deleting your account
-  immediately and permanently removes your rankings, shelf items, comparison
-  history, follows and followers, activity, tag suggestions, and your profile
-  - this cannot be undone.
+  immediately and permanently removes your rankings and written reviews,
+  shelf items and finish dates, comparison history, follows and followers,
+  activity, tag suggestions, blocks, reports you've filed, your profile
+  picture, and your profile (including your username and display name) -
+  this cannot be undone.
 </p>
 
 <h2>Children's privacy</h2>
