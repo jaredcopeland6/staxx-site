@@ -4,6 +4,6 @@
   "email": "admin@staxxbooks.com",
   "waitlist": {
     "endpoint": "https://aworimellnopbnhvacel.supabase.co/functions/v1/join-waitlist",
-    "turnstileSiteKey": "1x00000000000000000000BB"
+    "turnstileSiteKey": "0x4AAAAAAF1q5uEDR_ZVYsZG"
   }
 }
