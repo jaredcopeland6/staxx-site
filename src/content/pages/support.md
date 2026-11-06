@@ -12,7 +12,7 @@ Staxx is a book-ranking app. Instead of giving a book a star rating, you say rou
 
 After you rank a book you will be asked for a few vibe tags and then offered a box to write a review. It is optional - tap **Skip** if you would rather not.
 
-To add, change or delete a review later, open the book and use **Edit** under "Your review". Reviews can be up to 15,000 characters. Anyone who can see your rankings can see your reviews; removing your ranking of a book removes the review with it.
+To add, change, or delete a review later, open the book and use **Edit** under "Your review". Reviews can be up to 15,000 characters. Anyone who can see your rankings can see your reviews; removing your ranking of a book removes the review with it.
 
 ## How do I report someone?
 
@@ -20,7 +20,7 @@ Open their profile, tap the **···** menu at the top right, and choose **Repor
 
 ## How do I block someone?
 
-Same **···** menu, then **Block**. Blocking works both ways straight away: neither of you will see the other's profile, rankings, shelf or activity anywhere in the app, neither of you will turn up in the other's searches or follower lists, and any follow between you is removed.
+Same **···** menu, then **Block**. Blocking works both ways straight away: neither of you will see the other's profile, rankings, shelf, or activity anywhere in the app, neither of you will turn up in the other's searches or follower lists, and any follow between you is removed.
 
 To see who you have blocked, or to undo it, go to **Profile › Settings › Blocked users** and tap **Unblock**. Unblocking does not restore a follow - if you want to follow each other again, do it deliberately.
 
@@ -36,7 +36,7 @@ Go to the **Profile** tab and tap your picture, then choose a photo. It is resiz
 
 Go to **Profile › Settings › Delete account**, type `DELETE` to confirm, and tap the button.
 
-This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and To Be Read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile and your profile picture file. Books you added to the shared catalogue stay, because other people use them, but they are no longer linked to you.
+This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and To Be Read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile, and your profile picture file. Books you added to the shared catalogue stay, because other people use them, but they are no longer linked to you.
 
 ## I ranked the wrong book
 
@@ -44,7 +44,7 @@ Open the book and choose **Remove from my rankings**, or swipe left on it in you
 
 ## A book's details are wrong
 
-Book titles, authors, covers and descriptions come from [Open Library](https://openlibrary.org) and Apple Books. If something is wrong, email us and we will correct it in our copy.
+Book titles, authors, covers, and descriptions come from [Open Library](https://openlibrary.org) and Apple Books. If something is wrong, email us and we will correct it in our copy.
 
 ## Contact
 

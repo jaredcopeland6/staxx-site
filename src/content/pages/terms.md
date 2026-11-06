@@ -12,7 +12,7 @@ Staxx is not for children under 13. If you are under 13, please do not create an
 
 ## What you may not post
 
-The things you can publish on Staxx are your **username**, your **display name**, your **profile picture**, and the **reviews** you write about books you have read. There is zero tolerance for objectionable content in any of them. Specifically, you may not post a username, display name, profile picture or review that is:
+The things you can publish on Staxx are your **username**, your **display name**, your **profile picture**, and the **reviews** you write about books you have read. There is zero tolerance for objectionable content in any of them. Specifically, you may not post a username, display name, profile picture, or review that is:
 
 - abusive, harassing, threatening, or intended to bully a particular person;
 - hateful, or that attacks or demeans people based on race, ethnicity, national origin, religion, disability, sex, gender identity, sexual orientation, or age;
@@ -50,11 +50,11 @@ You do not have to report someone to block them, and you do not have to explain 
 
 ## Your content
 
-Your username, display name, profile picture and reviews remain yours. By posting them you give us permission to show them inside Staxx to other users - which is the whole point of a social app. Note that profile pictures are served from a public address; see the [Privacy Policy](/privacy/) for what that means.
+Your username, display name, profile picture, and reviews remain yours. By posting them you give us permission to show them inside Staxx to other users - which is the whole point of a social app. Note that profile pictures are served from a public address; see the [Privacy Policy](/privacy/) for what that means.
 
 ## Book information
 
-Book titles, authors, covers and descriptions come from [Open Library](https://openlibrary.org), Apple Books and similar sources. We do not own them, and we cannot guarantee they are accurate or complete.
+Book titles, authors, covers, and descriptions come from [Open Library](https://openlibrary.org), Apple Books, and similar sources. We do not own them, and we cannot guarantee they are accurate or complete.
 
 ## The app is provided as it is
 

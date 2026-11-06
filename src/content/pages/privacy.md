@@ -10,7 +10,7 @@ Staxx is a social book-tracking app: you rank books you've read against each oth
 
 - **Email address** - collected at sign-up and managed by our authentication provider, Supabase Auth. We use it to identify your account and for account-related emails (e.g. confirming your address). We never see or store your password ourselves.
 - **Username** - your unique @handle, which other users see.
-- **Display name** - optional, up to 40 characters. If you set one, it's shown on your profile, in the activity feed and in people search, alongside your username. It can be any name you like, including your real name. You can change or clear it at any time in Edit profile.
+- **Display name** - optional, up to 40 characters. If you set one, it's shown on your profile, in the activity feed, and in people search, alongside your username. It can be any name you like, including your real name. You can change or clear it at any time in Edit profile.
 - **Profile picture** - optional. If you choose one, the image is resized on your device and stored by our backend provider. You can replace it at any time, and deleting your account deletes it. See "Who can see your information" for an important note about how it is served.
 - **Books you shelve and rank** - which books you've marked as to-be-read, currently reading, or read, plus the 0-10 score and rank position each ranked book receives, and the date you finished each book you mark read (filled in automatically when you mark it read, and editable).
 - **Written reviews** - optional. If you write a review of a book you've ranked (up to 15,000 characters), it's saved with that ranking and shown with it.
@@ -31,7 +31,7 @@ Staxx is a social app, and most of the data above is visible to other signed-in 
 
 ## How we use your information
 
-To run the core features of the app: showing your ranked shelf, predicting a "Personal Score" for books you haven't read yet based on your own ranking history and your friends' rankings, and building the activity feed. We also use reports to review content and accounts against our Terms of Use, which can mean removing a review, profile picture, username or display name, or suspending an account. We do not use your information for advertising, and we do not sell your information to anyone.
+To run the core features of the app: showing your ranked shelf, predicting a "Personal Score" for books you haven't read yet based on your own ranking history and your friends' rankings, and building the activity feed. We also use reports to review content and accounts against our Terms of Use, which can mean removing a review, profile picture, username, or display name, or suspending an account. We do not use your information for advertising, and we do not sell your information to anyone.
 
 ## Third-party services we use
 
