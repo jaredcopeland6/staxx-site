@@ -4,19 +4,19 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Mockup from '../components/Mockup.astro';
+import PhoneShot from '../components/PhoneShot.astro';
 import WaitlistForm from '../components/WaitlistForm.astro';
 import home from '../data/home.json';
 import site from '../data/site.json';
 
 const { seo, hero, steps, features, faq, closing } = home;
 
-// Which drawn screen goes with which feature, matched by its id in home.json.
+// Which app screenshot goes with which feature, matched by its id in home.json.
 const screens = {
-  'head-to-head': 'head-to-head',
-  picks: 'picks',
+  'head-to-head': 'ranked',
+  picks: 'taste',
   discover: 'discover',
-  friends: 'friends',
+  friends: 'feed',
 } as const;
 
 const structuredData = [
@@ -57,9 +57,9 @@ const structuredData = [
       <WaitlistForm id="join" source="hero" />
       <p class="availability">{hero.availability}</p>
       <div class="hero-phones">
-        <Mockup screen="ranked-mini" class="side left" />
-        <Mockup screen="compare" class="center" />
-        <Mockup screen="picks-mini" class="side right" />
+        <PhoneShot shot="how-was-it" class="side left" />
+        <PhoneShot shot="compare" class="center" eager />
+        <PhoneShot shot="ranked" class="side right" />
       </div>
     </div>
   </section>
@@ -89,7 +89,7 @@ const structuredData = [
             )}
           </div>
           <div class="shot">
-            <Mockup screen={screens[f.id as keyof typeof screens] ?? 'head-to-head'} />
+            <PhoneShot shot={screens[f.id as keyof typeof screens] ?? 'ranked'} />
           </div>
         </div>
       </section>

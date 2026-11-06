@@ -1,0 +1,45 @@
+---
+// A real screenshot from the app inside a phone frame. The screenshots are
+// taken in the iPhone Simulator as the test reader Sam (see README), at full
+// resolution; Astro turns each into small modern-format copies at build time.
+import { Picture } from 'astro:assets';
+import compare from '../assets/screens/compare.png';
+import ranked from '../assets/screens/ranked.png';
+import howWasIt from '../assets/screens/how-was-it.png';
+import taste from '../assets/screens/taste.png';
+import discover from '../assets/screens/discover.png';
+import feed from '../assets/screens/feed.png';
+
+const shots = {
+  compare: { src: compare, alt: 'Staxx asking "Which did you like more?" between The Song of Achilles and Dune' },
+  ranked: { src: ranked, alt: 'A ranked fiction shelf in Staxx, each book with a score out of 10' },
+  'how-was-it': { src: howWasIt, alt: 'Staxx asking "How was it?" with Loved it, It was okay and Not for me' },
+  taste: { src: taste, alt: 'The Your taste card in Staxx, listing what a reader loves most, from plot twists to slow burns' },
+  discover: { src: discover, alt: 'The Staxx Discover tab with Picked for you and Popular new releases' },
+  feed: { src: feed, alt: 'The Staxx feed showing friends ranking books, with their reviews' },
+} as const;
+
+interface Props {
+  shot: keyof typeof shots;
+  class?: string;
+  /** The first phone on the page loads straight away; the rest wait until scrolled to. */
+  eager?: boolean;
+}
+const { shot, class: extra = '', eager = false } = Astro.props;
+const { src, alt } = shots[shot];
+---
+<div class={`phone ${extra}`}>
+  <div class="screen shot">
+    <Picture
+      src={src}
+      alt={alt}
+      widths={[280, 560, 840]}
+      sizes="280px"
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      quality={80}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+    />
+  </div>
+</div>
