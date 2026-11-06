@@ -1,7 +1,7 @@
 ---
 title: "Support"
 description: "Help with Staxx: reviews, reporting, blocking, your profile, deleting your account, and how to contact us."
-updated: 2026-10-14
+updated: 2026-11-05
 ---
 
 ## What Staxx is
@@ -44,7 +44,7 @@ Open the book and choose **Remove from my rankings**, or swipe left on it in you
 
 ## A book's details are wrong
 
-Book titles, authors, covers and descriptions come from [Open Library](https://openlibrary.org). If something is wrong, email us and we will correct it in our copy.
+Book titles, authors, covers and descriptions come from [Open Library](https://openlibrary.org) and Apple Books. If something is wrong, email us and we will correct it in our copy.
 
 ## Contact
 

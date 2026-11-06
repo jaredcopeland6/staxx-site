@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "What Staxx collects, who can see it, the services we use, and how to delete your account."
-updated: 2026-10-27
+updated: 2026-11-05
 ---
 
 Staxx is a social book-tracking app: you rank books you've read against each other, keep a shelf of what you want to read, and see what people you follow are reading. This page describes exactly what the app collects, why, and who can see it - matched to what the app actually does, not a generic template.
@@ -19,6 +19,7 @@ Staxx is a social book-tracking app: you rank books you've read against each oth
 - **Tag suggestions** - if you suggest a descriptive tag (genre or vibe) for a book, we record which tag and which book; we do not publicly attribute a specific suggestion to your account in the app's display, but the row itself, like other social data in the app, is readable via the same access described below.
 - **Activity** - a record of your shelf changes and rankings, used to build the activity feed shown to people who follow you.
 - **Blocks and reports** - if you block someone, we record that so the two of you are hidden from each other. If you report someone, we record who you reported, the reason you picked, and any note you add. We also record when you agreed to our Terms of Use and this policy at sign-up.
+- **Waitlist email (website only)** - if you join the waitlist on staxxbooks.com, we store the email address you enter, which form you used, and when. We use it only to tell you when Staxx is available, and it isn't linked to an app account. To be removed, email [admin@staxxbooks.com](mailto:admin@staxxbooks.com).
 
 We do not ask for your real name, phone number, address, payment information, or precise location, because the app doesn't use any of those. If you choose to use your real name as your display name, it is visible to other users like the rest of your profile.
 
@@ -35,10 +36,14 @@ To run the core features of the app: showing your ranked shelf, predicting a "Pe
 ## Third-party services we use
 
 - **Open Library** - when you search for or add a book, we send that search to Open Library's public API to fetch its title, author, cover image, and description. No account information is included in that request.
+- **Apple (Apple Books)** - to show a book's cover and details, our server looks the book up in Apple's public book catalogue by its title and author. No account information is included.
+- **Google Books** - our server checks whether a book is fiction or non-fiction against Google's public book catalogue, using only the book's title and author.
+- **Cover images** - the app loads book covers directly from Apple's and Open Library's image servers. Like any website, those servers can see your device's IP address when an image loads; nothing else about you is sent.
 - **Anthropic (Claude)** - we use Anthropic's AI models to classify a book's genre and tags. Only the book's own public metadata (title, author, subjects, description) is sent for this - never your email, username, or reading history.
 - **Supabase** - our backend provider, which hosts our database, handles authentication, and runs our server-side code. Supabase processes all of the data described above on our behalf, under its own security and privacy commitments.
+- **Cloudflare** - hosts our website, staxxbooks.com. On the waitlist form, Cloudflare Turnstile checks that you are a person and not a bot; to do that it processes technical information such as your IP address and browser details. Cloudflare Web Analytics counts website visits without cookies and without identifying you.
 
-We do not use any third-party advertising or analytics services today.
+We do not use any third-party advertising services. The app uses no analytics service today; the website counts visits with Cloudflare Web Analytics, which sets no cookies.
 
 ## Data retention and deletion
 
