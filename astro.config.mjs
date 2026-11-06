@@ -10,6 +10,7 @@ export default defineConfig({
   // Connect with a trailing slash; keep those addresses exactly.
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [sitemap()],
+  // og-card is only the source of the link-preview picture, not a real page.
+  integrations: [sitemap({ filter: (page) => !page.includes('/og-card/') })],
   devToolbar: { enabled: false },
 });
