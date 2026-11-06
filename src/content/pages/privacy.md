@@ -36,8 +36,8 @@ To run the core features of the app: showing your ranked shelf, predicting a "Pe
 ## Third-party services we use
 
 - **Open Library** - when you search for or add a book, we send that search to Open Library's public API to fetch its title, author, cover image, and description. No account information is included in that request.
-- **Apple (Apple Books)** - to show a book's cover and details, our server looks the book up in Apple's public book catalogue by its title and author. No account information is included.
-- **Google Books** - our server checks whether a book is fiction or non-fiction against Google's public book catalogue, using only the book's title and author.
+- **Apple (Apple Books)** - to show a book's cover and details, our server looks the book up in Apple's public book catalog by its title and author. No account information is included.
+- **Google Books** - our server checks whether a book is fiction or non-fiction against Google's public book catalog, using only the book's title and author.
 - **Cover images** - the app loads book covers directly from Apple's and Open Library's image servers. Like any website, those servers can see your device's IP address when an image loads; nothing else about you is sent.
 - **Anthropic (Claude)** - we use Anthropic's AI models to classify a book's genre and tags. Only the book's own public metadata (title, author, subjects, description) is sent for this - never your email, username, or reading history.
 - **Supabase** - our backend provider, which hosts our database, handles authentication, and runs our server-side code. Supabase processes all of the data described above on our behalf, under its own security and privacy commitments.

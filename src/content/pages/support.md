@@ -36,7 +36,7 @@ Go to the **Profile** tab and tap your picture, then choose a photo. It is resiz
 
 Go to **Profile › Settings › Delete account**, type `DELETE` to confirm, and tap the button.
 
-This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and To Be Read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile, and your profile picture file. Books you added to the shared catalogue stay, because other people use them, but they are no longer linked to you.
+This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and To Be Read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile, and your profile picture file. Books you added to the shared catalog stay, because other people use them, but they are no longer linked to you.
 
 ## I ranked the wrong book
 
