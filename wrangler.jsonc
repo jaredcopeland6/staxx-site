@@ -1,0 +1,11 @@
+// Cloudflare hosting: a static site, no server code. Cloudflare runs
+// `npm run build` and serves the dist/ folder it produces.
+{
+  "name": "staxx-site",
+  "compatibility_date": "2026-11-05",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

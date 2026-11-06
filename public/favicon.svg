@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs><linearGradient id="staxx-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#652735"/><stop offset="0.48" stop-color="#3A1B27"/><stop offset="1" stop-color="#171C29"/></linearGradient></defs>
+  <rect width="1024" height="1024" fill="url(#staxx-bg)"/>
+  <rect x="213.92" y="235.52" width="177.12" height="507.6" rx="21.6" fill="#F3EBDD"/>
+  <rect x="213.92" y="658.88" width="177.12" height="28.08" fill="#3A1B27" opacity="0.35"/>
+  <polygon points="265.76,235.52 339.2,235.52 339.2,440.72 302.48,401.84 265.76,440.72" fill="#652735"/>
+  <rect x="423.44" y="343.52" width="177.12" height="399.6" rx="21.6" fill="#D9C7A4"/>
+  <rect x="423.44" y="658.88" width="177.12" height="28.08" fill="#3A1B27" opacity="0.35"/>
+  <rect x="632.96" y="440.72" width="177.12" height="302.4" rx="21.6" fill="#B39A67"/>
+  <rect x="632.96" y="658.88" width="177.12" height="28.08" fill="#3A1B27" opacity="0.35"/>
+  <rect x="170.72" y="760.4" width="682.56" height="28.08" rx="14.04" fill="#B39A67"/>
+</svg>

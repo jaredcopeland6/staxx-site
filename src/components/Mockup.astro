@@ -1,0 +1,164 @@
+---
+// Drawn phone screens in the app's style. Classic, public-domain books on
+// plain covers, and made-up friends, so nothing here is a real person's data
+// or a publisher's artwork. Swap for real screenshots of a test account later.
+interface Props {
+  screen: 'compare' | 'ranked-mini' | 'picks-mini' | 'head-to-head' | 'picks' | 'discover' | 'friends';
+  class?: string;
+}
+const { screen, class: extra = '' } = Astro.props;
+
+const shelf = [
+  { title: 'Middlemarch', author: 'George Eliot', color: '#2F4A3F', score: '10.0', tone: 'loved' },
+  { title: 'Jane Eyre', author: 'Charlotte Brontë', color: '#652735', score: '9.2', tone: 'loved' },
+  { title: 'Frankenstein', author: 'Mary Shelley', color: '#171C29', score: '8.3', tone: 'loved' },
+  { title: 'The Odyssey', author: 'Homer', color: '#B39A67', score: '6.1', tone: 'okay' },
+  { title: 'Moby-Dick', author: 'Herman Melville', color: '#3A1B27', score: '4.4', tone: 'okay' },
+  { title: 'Ulysses', author: 'James Joyce', color: '#585C67', score: '2.1', tone: 'meh' },
+];
+const loves = [
+  { label: 'Literary style', pct: 94 },
+  { label: 'Slow burn', pct: 78 },
+  { label: 'Plot twists', pct: 61 },
+  { label: 'Angst', pct: 42 },
+];
+const rails = [
+  { title: 'Picked for you', covers: ['#652735', '#2F4A3F', '#B39A67', '#3A1B27'], scores: ['9.1', '8.8', '8.4', '8.0'] },
+  { title: 'Popular new releases', covers: ['#171C29', '#7A6337', '#8A3447', '#3F4453'] },
+  { title: 'Friends loved', covers: ['#D9C7A4', '#4E1D29', '#2F4A3F', '#B39A67'] },
+];
+const feed = [
+  { who: 'Maya', initials: 'MA', bg: '#EEDDD9', fg: '#4E1D29', verb: 'ranked', book: 'Rebecca', when: '2h', score: '9.4', tone: 'loved' },
+  { who: 'Dev', initials: 'DJ', bg: '#EADFC3', fg: '#5B4920', verb: 'ranked', book: 'Moby-Dick', when: '5h', score: '5.8', tone: 'okay' },
+  { who: 'Sam', initials: 'SR', bg: '#E6DED0', fg: '#474B55', verb: 'wants to read', book: 'Middlemarch', when: 'Yesterday' },
+  { who: 'Maya', initials: 'MA', bg: '#EEDDD9', fg: '#4E1D29', verb: 'ranked', book: 'Jane Eyre', when: 'Yesterday', score: '8.7', tone: 'loved' },
+];
+---
+<div class={`phone ${extra}`} aria-hidden="true">
+  {screen === 'compare' && (
+    <div class="screen" style="gap: 16px; text-align: center">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted)">Ranking · Fiction</div>
+      <div class="serif" style="font-weight: 600; font-size: 23px; line-height: 1.15">Which did you<br>like more?</div>
+      <div style="display: flex; gap: 12px; justify-content: center">
+        <div class="cover" style="width: 112px; height: 164px; background: #3A1B27; font-size: 15px">Rebecca</div>
+        <div class="cover" style="width: 112px; height: 164px; background: #2F4A3F; font-size: 15px">Persuasion</div>
+      </div>
+      <div class="card" style="border-radius: 999px; padding: 11px; font-weight: 600; margin-top: auto">Too close to call</div>
+    </div>
+  )}
+
+  {screen === 'ranked-mini' && (
+    <div class="screen">
+      <div class="screen-title" style="font-size: 21px">Ranked</div>
+      {shelf.slice(0, 3).map((b, i) => (
+        <div class="rank-row" style="gap: 9px">
+          <span class="rank-num" style="font-size: 16px">{i + 1}</span>
+          <div class="cover" style={`width: 30px; height: 44px; padding: 0; background: ${b.color}`}></div>
+          <div class="row-title" style="flex: 1; font-size: 14px">{b.title}</div>
+          <span class={`pill ${b.tone}`}>{b.score}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {screen === 'picks-mini' && (
+    <div class="screen">
+      <div class="screen-title" style="font-size: 21px">Picked for you</div>
+      <div class="card" style="display: flex; gap: 10px; padding: 10px">
+        <div class="cover" style="width: 50px; height: 74px; background: #652735"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+          <div class="row-title" style="font-size: 14px">Wuthering Heights</div>
+          <div class="row-meta" style="font-size: 11px">Emily Brontë</div>
+          <span class="pill loved" style="align-self: flex-start; margin-top: auto">8.9</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {screen === 'head-to-head' && (
+    <div class="screen">
+      <div class="screen-title">Your ranked shelf</div>
+      <div style="display: flex; gap: 22px; font-weight: 600; border-bottom: 2px solid var(--divider)">
+        <span style="padding-bottom: 8px; border-bottom: 2px solid var(--accent); margin-bottom: -2px">Fiction</span>
+        <span style="padding-bottom: 8px; color: var(--muted)">Non-fiction</span>
+      </div>
+      {shelf.map((b, i) => (
+        <div class="rank-row">
+          <span class="rank-num">{i + 1}</span>
+          <div class="cover" style={`width: 32px; height: 48px; padding: 0; background: ${b.color}`}></div>
+          <div style="flex: 1; min-width: 0"><div class="row-title">{b.title}</div><div class="row-meta">{b.author}</div></div>
+          <span class={`pill ${b.tone}`}>{b.score}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {screen === 'picks' && (
+    <div class="screen">
+      <div class="screen-title">Your taste</div>
+      <div class="card" style="display: flex; gap: 12px">
+        <div class="cover" style="width: 60px; height: 88px; background: #2F4A3F; font-size: 10px">Persuasion</div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 5px">
+          <div class="row-title">Persuasion</div>
+          <div class="row-meta">Jane Austen</div>
+          <div style="display: flex; gap: 6px; align-items: center; margin-top: auto"><span class="pill for-you">for you</span><span class="pill loved">8.9</span></div>
+        </div>
+      </div>
+      <div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 12px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; color: var(--muted)">What you love</div>
+        {loves.map((l) => (
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600"><span>{l.label}</span><span style="color: var(--muted)">{l.pct}%</span></div>
+            <div class="bar"><span style={`width: ${l.pct}%`}></span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {screen === 'discover' && (
+    <div class="screen" style="padding-left: 0; padding-right: 0; gap: 14px">
+      <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+        <div class="screen-title">Discover</div>
+        <div style="display: flex; align-items: center; gap: 8px; background: var(--surface); border-radius: 12px; padding: 10px 12px; box-shadow: 0 1px 3px rgba(23,28,41,.12); font-size: 13px; color: var(--muted)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+          Books, authors or readers
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; padding: 0 16px; overflow: hidden">
+        <span class="chip on">For you</span><span class="chip">Fantasy</span><span class="chip">Mystery</span><span class="chip">Romance</span>
+      </div>
+      {rails.map((r) => (
+        <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 8px">
+          <div class="serif" style="font-weight: 600; font-size: 17px">{r.title}</div>
+          <div style="display: flex; gap: 10px">
+            {r.covers.map((c, i) => (
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start">
+                <div class="cover" style={`width: 66px; height: 98px; background: ${c}`}></div>
+                {r.scores && <span class="pill loved">{r.scores[i]}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {screen === 'friends' && (
+    <div class="screen">
+      <div class="screen-title">Feed</div>
+      <div>
+        {feed.map((f, i) => (
+          <div style={`display: flex; gap: 11px; padding: 12px 0; ${i < feed.length - 1 ? 'border-bottom: 1px solid var(--divider)' : ''}`}>
+            <span class="avatar" style={`background: ${f.bg}; color: ${f.fg}`}>{f.initials}</span>
+            <div style="flex: 1; line-height: 1.4">
+              <b>{f.who}</b> <span style="color: var(--text-2)">{f.verb}</span> <span class="serif" style="font-weight: 600">{f.book}</span>
+              <div class="row-meta" style="margin-top: 2px">{f.when}</div>
+            </div>
+            {f.score && <span class={`pill ${f.tone}`} style="align-self: flex-start">{f.score}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>

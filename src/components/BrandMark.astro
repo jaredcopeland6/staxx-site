@@ -1,0 +1,30 @@
+---
+// The Staxx shelf mark from storee-app assets/brand/staxx-mark.svg, cropped to
+// the books. Its first book is parchment, so on a light background it sits on
+// a dark tile (`tile`), the way the app icon does.
+interface Props {
+  size?: number;
+  tile?: boolean;
+}
+const { size = 32, tile = false } = Astro.props;
+const mark = tile ? Math.round(size * 0.68) : size;
+---
+{tile ? (
+  <span style={`width: ${size}px; height: ${size}px; border-radius: ${Math.round(size * 0.25)}px; background: #3A1B27; display: flex; align-items: center; justify-content: center`}>
+    <svg width={mark} height={mark} viewBox="180 240 664 540" aria-hidden="true">
+      <rect x="236" y="256" width="164" height="470" rx="20" fill="#F3EBDD" />
+      <polygon points="284,256 352,256 352,446 318,410 284,446" fill="#652735" />
+      <rect x="430" y="356" width="164" height="370" rx="20" fill="#D9C7A4" />
+      <rect x="624" y="446" width="164" height="280" rx="20" fill="#B39A67" />
+      <rect x="196" y="742" width="632" height="26" rx="13" fill="#B39A67" />
+    </svg>
+  </span>
+) : (
+  <svg width={mark} height={mark} viewBox="180 240 664 540" aria-hidden="true">
+    <rect x="236" y="256" width="164" height="470" rx="20" fill="#F3EBDD" />
+    <polygon points="284,256 352,256 352,446 318,410 284,446" fill="#8A3447" />
+    <rect x="430" y="356" width="164" height="370" rx="20" fill="#D9C7A4" />
+    <rect x="624" y="446" width="164" height="280" rx="20" fill="#B39A67" />
+    <rect x="196" y="742" width="632" height="26" rx="13" fill="#B39A67" />
+  </svg>
+)}

@@ -1,0 +1,102 @@
+{
+  "seo": {
+    "title": "Staxx: rank the books you read and find your next favourite",
+    "description": "Staxx is a free book app for iPhone. Compare books head to head for scores that mean something, get picks predicted for your taste, and follow what your friends are reading."
+  },
+  "hero": {
+    "badge": "Coming soon to iPhone",
+    "titleStart": "Your books,",
+    "titleEmphasis": "ranked.",
+    "subtitle": "Compare books head to head for scores that mean something. Get picks predicted for your taste. Follow what your friends are reading.",
+    "availability": "Free · App Store coming soon · Android coming soon"
+  },
+  "steps": [
+    {
+      "title": "Finish a book",
+      "text": "Mark it read, then say roughly how it landed: loved it, it was okay, or not for me."
+    },
+    {
+      "title": "Pick between two",
+      "text": "A few quick head-to-heads against books you've already ranked. No stars, no second-guessing."
+    },
+    {
+      "title": "Get a real score",
+      "text": "It slots into your ranked shelf with a score out of 10 that reflects how you actually felt."
+    }
+  ],
+  "features": [
+    {
+      "id": "head-to-head",
+      "eyebrow": "Head to head",
+      "title": "Stars are too blunt. Comparisons aren't.",
+      "paragraphs": [
+        "Was it a 4 or a 4.5? Nobody knows. But you always know which of two books you liked more. Staxx asks that a handful of times and works out exactly where the book belongs."
+      ],
+      "bullets": [
+        "Separate ranked lists for fiction and non-fiction",
+        "About 7 questions, even with 100 books on your shelf",
+        "Re-rank anything, any time"
+      ]
+    },
+    {
+      "id": "picks",
+      "eyebrow": "Picked for you",
+      "title": "Know your score before you read the first page.",
+      "paragraphs": [
+        "Every ranking teaches Staxx a little more about your taste: the styles, moods and authors you keep coming back to. It predicts what you'd score books you haven't read yet.",
+        "The more you rank, the sharper it gets."
+      ],
+      "bullets": []
+    },
+    {
+      "id": "discover",
+      "eyebrow": "Discover",
+      "title": "Browse by genre, sorted for you.",
+      "paragraphs": [
+        "Tap a genre and every shelf re-sorts by your predicted score, so the best match for you is always first. Search any book, author or reader in one place."
+      ],
+      "bullets": [
+        "Popular new releases from the last six months",
+        "The books your friends loved most",
+        "Readers with taste like yours, to follow"
+      ]
+    },
+    {
+      "id": "friends",
+      "eyebrow": "Friends",
+      "title": "See what your friends are reading, and how they ranked it.",
+      "paragraphs": [
+        "Follow friends to see their rankings as they happen, browse their shelves, and find out who shares your taste. Their scores help predict yours, too."
+      ],
+      "bullets": []
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Staxx free?",
+      "answer": "Yes. Staxx is free."
+    },
+    {
+      "question": "When can I get it?",
+      "answer": "Staxx is coming soon to the App Store. Join the waitlist and we'll email you when it's ready."
+    },
+    {
+      "question": "Is Staxx on Android?",
+      "answer": "Android is coming soon. Join the waitlist and we'll let you know."
+    },
+    {
+      "question": "How is my score worked out?",
+      "answer": "Your first answer puts the book in a band: loved it (6.7–10), it was okay (3.4–6.6) or not for me (0–3.3). The head-to-heads place it within that band, so a book you loved always scores like one."
+    },
+    {
+      "question": "Do I have to compare against my whole library?",
+      "answer": "No. Each answer halves the options, so it's about 7 questions with 100 books, and you can call any pair too close to call."
+    }
+  ],
+  "closing": {
+    "titleStart": "What did you",
+    "titleEmphasis": "really",
+    "titleEnd": "think?",
+    "text": "Be first to rank your shelf. We'll email you the day Staxx arrives."
+  }
+}

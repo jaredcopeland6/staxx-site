@@ -1,0 +1,32 @@
+---
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  /** Which page is showing, so its link is marked as current. */
+  current?: 'terms' | 'privacy' | 'support';
+  /** The homepage's "Join the waitlist" jumps to the form; other pages link to it. */
+  ctaHref?: string;
+  /** True on the light pages, where the mark needs its dark tile. */
+  light?: boolean;
+}
+const { current, ctaHref = '/#join', light = false } = Astro.props;
+const links = [
+  { href: '/#how', label: 'How it works' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/support/', label: 'Support', key: 'support' },
+];
+---
+<header class="wrap site-header">
+  <a class="brand" href="/" aria-label="Staxx home">
+    <BrandMark tile={light} />
+    <span class="brand-name">Staxx</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <span class="nav-links">
+      {links.map((l) => (
+        <a href={l.href} aria-current={current && l.key === current ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </span>
+    <a class="nav-cta" href={ctaHref}>Join the waitlist</a>
+  </nav>
+</header>

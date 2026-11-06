@@ -1,0 +1,13 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+<footer class="wrap site-footer">
+  <span>© {year} Staxx</span>
+  <nav aria-label="Footer">
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/support/">Support</a>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </nav>
+</footer>

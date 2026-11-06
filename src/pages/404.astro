@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Page not found · Staxx" description="This page doesn't exist." themeColor="#F3EBDD">
+  <div class="on-paper"><Header light /></div>
+  <main class="wrap legal-head" style="padding-bottom: 120px">
+    <p class="eyebrow">404</p>
+    <h1>This page isn't on the shelf.</h1>
+    <p class="updated" style="font-size: 18px">Try the <a href="/">homepage</a>, or the <a href="/support/">Support</a> page.</p>
+  </main>
+  <div class="on-paper"><Footer /></div>
+</Base>

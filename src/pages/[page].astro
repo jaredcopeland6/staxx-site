@@ -1,0 +1,53 @@
+---
+// /terms/, /privacy/ and /support/, one per Markdown file in
+// src/content/pages. The side list of sections is built from the file's
+// "## " headings, so it never goes out of date.
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((entry) => ({ params: { page: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const sections = headings.filter((h) => h.depth === 2);
+const updated = entry.data.updated.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+});
+---
+<Base title={`${entry.data.title} · Staxx`} description={entry.data.description} themeColor="#F3EBDD">
+  <div class="on-paper" style="border-bottom: 1px solid var(--divider)">
+    <Header current={entry.id as 'terms' | 'privacy' | 'support'} light />
+  </div>
+  <main>
+    <div class="wrap legal-head">
+      <p class="eyebrow">{entry.id === 'support' ? 'Help' : 'Legal'}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="updated">Last updated {updated}</p>
+    </div>
+    <div class="wrap legal-body">
+      {sections.length > 2 && (
+        <nav class="toc" aria-label="On this page">
+          <span class="toc-label">On this page</span>
+          {sections.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
+        </nav>
+      )}
+      <article class="prose">
+        <Content />
+        <div class="contact-card">
+          <div>
+            <h2>Still have a question?</h2>
+            <p>We read every message.</p>
+          </div>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </article>
+    </div>
+  </main>
+  <div class="on-paper"><Footer /></div>
+</Base>

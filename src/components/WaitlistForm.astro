@@ -1,0 +1,108 @@
+---
+// Email box + "Join the waitlist". Posts to the join-waitlist Edge Function in
+// storee-app, after a Cloudflare Turnstile check that people are not bots.
+// Turnstile stays invisible unless Cloudflare is unsure, then shows a box.
+import site from '../data/site.json';
+
+interface Props {
+  id: string;
+  /** Where on the page the form sits, stored with the email. */
+  source: 'hero' | 'closing';
+}
+const { id, source } = Astro.props;
+---
+<div class="waitlist-root" data-waitlist data-endpoint={site.waitlist.endpoint} data-sitekey={site.waitlist.turnstileSiteKey} data-source={source}>
+  <form id={id} class="waitlist" novalidate aria-label="Join the waitlist">
+    <label class="visually-hidden" for={`${id}-email`}>Email address</label>
+    <input id={`${id}-email`} name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required maxlength="254">
+    <button type="submit">Join the waitlist</button>
+  </form>
+  <div class="turnstile-slot"></div>
+  <p class="waitlist-status" role="status" aria-live="polite"></p>
+</div>
+
+<script>
+  type Turnstile = {
+    render: (el: Element, opts: Record<string, unknown>) => string;
+    execute: (widgetId: string) => void;
+    reset: (widgetId: string) => void;
+  };
+  declare global {
+    interface Window { turnstile?: Turnstile; onStaxxTurnstile?: () => void }
+  }
+
+  const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  const roots = [...document.querySelectorAll<HTMLElement>('[data-waitlist]')];
+
+  function setup(root: HTMLElement) {
+    const form = root.querySelector('form')!;
+    const input = form.querySelector('input')!;
+    const button = form.querySelector('button')!;
+    const status = root.querySelector<HTMLElement>('.waitlist-status')!;
+    const slot = root.querySelector('.turnstile-slot')!;
+    let widgetId: string | null = null;
+
+    const say = (text: string, tone: 'info' | 'error' = 'info') => {
+      status.textContent = text;
+      status.dataset.tone = tone;
+    };
+    const busy = (on: boolean) => {
+      button.disabled = on;
+      button.textContent = on ? 'Joining…' : 'Join the waitlist';
+    };
+
+    async function send(token: string) {
+      try {
+        const res = await fetch(root.dataset.endpoint!, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: input.value.trim(), token, source: root.dataset.source }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        const done = document.createElement('p');
+        done.className = 'waitlist-done';
+        done.textContent = "You're on the list. We'll email you when Staxx arrives.";
+        root.replaceChildren(done);
+      } catch {
+        busy(false);
+        say('That didn’t go through. Please try again in a moment.', 'error');
+        if (widgetId) window.turnstile?.reset(widgetId);
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!EMAIL.test(input.value.trim())) {
+        say('Please enter a full email address, like you@email.com.', 'error');
+        input.focus();
+        return;
+      }
+      if (!window.turnstile) {
+        say('Still loading. Please try again in a second.', 'error');
+        return;
+      }
+      say('');
+      busy(true);
+      widgetId ??= window.turnstile.render(slot, {
+        sitekey: root.dataset.sitekey,
+        execution: 'execute',
+        appearance: 'interaction-only',
+        callback: (token: string) => send(token),
+        'error-callback': () => {
+          busy(false);
+          say('We couldn’t check you’re not a bot. Please try again.', 'error');
+        },
+      });
+      window.turnstile.execute(widgetId);
+    });
+  }
+
+  if (roots.length) {
+    roots.forEach(setup);
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.defer = true;
+    document.head.append(s);
+  }
+</script>

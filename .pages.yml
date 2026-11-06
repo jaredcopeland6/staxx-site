@@ -1,0 +1,69 @@
+# Pages CMS (app.pagescms.org): the friendly editor for this site's words.
+# Saving there commits to GitHub, and Cloudflare republishes in about a minute.
+content:
+  - name: home
+    label: Homepage
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - name: seo
+        label: Google and link previews
+        type: object
+        fields:
+          - { name: title, label: Page title (shown in Google and browser tabs), type: string }
+          - { name: description, label: Description (shown under the title in Google), type: text }
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: badge, label: Small label above the headline, type: string }
+          - { name: titleStart, label: Headline, type: string }
+          - { name: titleEmphasis, label: Headline word in pink italics, type: string }
+          - { name: subtitle, label: Text under the headline, type: text }
+          - { name: availability, label: Line under the waitlist form, type: string }
+      - name: steps
+        label: How it works (1, 2, 3)
+        type: object
+        list: { min: 3, max: 3 }
+        fields:
+          - { name: title, type: string }
+          - { name: text, type: text }
+      - name: features
+        label: Feature sections
+        type: object
+        list: { min: 4, max: 4 }
+        fields:
+          - { name: id, label: Section id (don't change; it picks the phone picture), type: string, readonly: true }
+          - { name: eyebrow, label: Small label, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: paragraphs, label: Paragraphs, type: text, list: true }
+          - { name: bullets, label: Bullet points, type: string, list: true }
+      - name: faq
+        label: Questions
+        type: object
+        list: true
+        fields:
+          - { name: question, type: string }
+          - { name: answer, type: text }
+      - name: closing
+        label: Bottom of the page
+        type: object
+        fields:
+          - { name: titleStart, label: Heading start, type: string }
+          - { name: titleEmphasis, label: Heading word in pink italics, type: string }
+          - { name: titleEnd, label: Heading end, type: string }
+          - { name: text, label: Text under the heading, type: text }
+
+  - name: pages
+    label: Terms, Privacy and Support
+    type: collection
+    path: src/content/pages
+    format: yaml-frontmatter
+    view:
+      fields: [title, updated]
+    fields:
+      - { name: title, type: string }
+      - { name: description, label: Description (shown in Google), type: text }
+      - { name: updated, label: Last updated, type: date }
+      - { name: body, label: Page text, type: rich-text }
