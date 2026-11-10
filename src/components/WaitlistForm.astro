@@ -2,6 +2,11 @@
 // Email box + "Join the waitlist". Posts to the join-waitlist Edge Function in
 // storee-app, after a Cloudflare Turnstile check that people are not bots.
 // Turnstile stays invisible unless Cloudflare is unsure, then shows a box.
+//
+// The script below does the sending. If it can't run (JavaScript off), the
+// form on its own goes nowhere: method="post" keeps the email out of the page
+// address, and the javascript: action is one a browser without JavaScript
+// ignores, so nothing is sent and the page stays put.
 import site from '../data/site.json';
 
 interface Props {
@@ -12,13 +17,14 @@ interface Props {
 const { id, source } = Astro.props;
 ---
 <div class="waitlist-root" data-waitlist data-endpoint={site.waitlist.endpoint} data-sitekey={site.waitlist.turnstileSiteKey} data-source={source}>
-  <form id={id} class="waitlist" novalidate aria-label="Join the waitlist">
+  <form id={id} class="waitlist" method="post" action="javascript:void(0)" novalidate aria-label="Join the waitlist">
     <label class="visually-hidden" for={`${id}-email`}>Email address</label>
     <input id={`${id}-email`} name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required maxlength="254">
     <button type="submit">Join the waitlist</button>
   </form>
   <div class="turnstile-slot"></div>
   <p class="waitlist-status" role="status" aria-live="polite"></p>
+  <noscript><p class="waitlist-status">Joining the waitlist needs JavaScript turned on in your browser.</p></noscript>
 </div>
 
 <script>
@@ -33,6 +39,23 @@ const { id, source } = Astro.props;
 
   const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   const roots = [...document.querySelectorAll<HTMLElement>('[data-waitlist]')];
+
+  // Cloudflare's bot check is fetched from their servers. If the browser
+  // can't get it (offline, or a content blocker), the next press of the
+  // button tries again, instead of answering "Still loading" forever.
+  let turnstileBlocked = false;
+  function loadTurnstile() {
+    turnstileBlocked = false;
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true;
+    s.defer = true;
+    s.onerror = () => {
+      turnstileBlocked = true;
+      s.remove();
+    };
+    document.head.append(s);
+  }
 
   function setup(root: HTMLElement) {
     const form = root.querySelector('form')!;
@@ -49,6 +72,18 @@ const { id, source } = Astro.props;
     const busy = (on: boolean) => {
       button.disabled = on;
       button.textContent = on ? 'Joining…' : 'Join the waitlist';
+    };
+
+    // The check failed or ran out of time. Free the button and reset the
+    // check, so pressing the button again starts a fresh one.
+    const checkFailed = () => {
+      busy(false);
+      say('We couldn’t check you’re not a bot. Please try again.', 'error');
+      try {
+        if (widgetId) window.turnstile?.reset(widgetId);
+      } catch {
+        widgetId = null; // the box is gone; the next try draws a new one
+      }
     };
 
     async function send(token: string) {
@@ -78,31 +113,40 @@ const { id, source } = Astro.props;
         return;
       }
       if (!window.turnstile) {
-        say('Still loading. Please try again in a second.', 'error');
+        if (turnstileBlocked) {
+          loadTurnstile();
+          say('The check that keeps bots out didn’t load. Check your connection or pause any content blocker, then try again.', 'error');
+        } else {
+          say('Still loading. Please try again in a second.', 'error');
+        }
         return;
       }
       say('');
       busy(true);
-      widgetId ??= window.turnstile.render(slot, {
-        sitekey: root.dataset.sitekey,
-        execution: 'execute',
-        appearance: 'interaction-only',
-        callback: (token: string) => send(token),
-        'error-callback': () => {
-          busy(false);
-          say('We couldn’t check you’re not a bot. Please try again.', 'error');
-        },
-      });
-      window.turnstile.execute(widgetId);
+      try {
+        widgetId ??= window.turnstile.render(slot, {
+          sitekey: root.dataset.sitekey,
+          execution: 'execute',
+          appearance: 'interaction-only',
+          // One try per press: a failure comes back here instead of being
+          // retried behind an error message.
+          retry: 'never',
+          callback: (token: string) => send(token),
+          'error-callback': () => {
+            checkFailed();
+            return true; // handled
+          },
+          'timeout-callback': checkFailed,
+        });
+        window.turnstile.execute(widgetId);
+      } catch {
+        checkFailed();
+      }
     });
   }
 
   if (roots.length) {
     roots.forEach(setup);
-    const s = document.createElement('script');
-    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-    s.async = true;
-    s.defer = true;
-    document.head.append(s);
+    loadTurnstile();
   }
 </script>
