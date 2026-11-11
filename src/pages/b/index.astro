@@ -32,6 +32,7 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
         </div>
         <h1 id="bk-title">We couldn't find that book</h1>
         <p id="bk-byline" class="bk-byline">The link may be old. Try searching for it in Staxx.</p>
+        <p id="bk-series" class="bk-series" hidden></p>
         <ul id="bk-tags" class="bk-tags" aria-label="Genres and tropes"></ul>
       </section>
 
@@ -130,10 +131,16 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
     if (book) {
       const b = book;
       $('bk-title').textContent = b.title;
-      const series = b.series_name
-        ? ` · ${b.series_name}${b.series_position != null ? `, book ${Number(b.series_position)}` : ''}`
-        : '';
-      $('bk-byline').textContent = `${b.author ? `by ${b.author}` : ''}${series}`.replace(/^ · /, '');
+      $('bk-byline').textContent = b.author ? `by ${b.author}` : '';
+      // The series as the app writes it (seriesLabel in storee-app
+      // lib/catalogueSearch.js): "Dungeon Crawler Carl #1", "#2.5" for a novella.
+      if (b.series_name) {
+        const n = b.series_position == null ? NaN : Number(b.series_position);
+        const label = Number.isFinite(n) ? `${b.series_name} #${Number.isInteger(n) ? n : n.toFixed(1)}` : b.series_name;
+        const series = $('bk-series');
+        series.textContent = label;
+        series.hidden = false;
+      }
 
       // Cover: Apple's art when there is a store link to sit beside it (O-81),
       // otherwise Open Library's; a drawn tile if neither loads.
@@ -223,6 +230,7 @@ import WaitlistForm from '../../components/WaitlistForm.astro';
   .bk-cover-fallback[hidden] { display: none; }
   .bk-hero h1 { margin: 18px 0 0; font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.12; }
   .bk-byline { margin: 6px 0 0; font-size: 16px; color: var(--text-2); }
+  .bk-series { margin: 4px 0 0; font-weight: 600; font-size: 15px; color: var(--accent); }
   .bk-tags { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
   .bk-tag { padding: 5px 12px; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); font-weight: 600; font-size: 14px; }
   .bk-body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
