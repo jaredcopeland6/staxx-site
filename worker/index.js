@@ -64,17 +64,27 @@ function setContent(content) {
   return { element: (e) => e.setAttribute('content', content) };
 }
 
+class UpstreamError extends Error {
+  constructor(status) {
+    super(`share_book ${status}`);
+    this.status = status;
+  }
+}
+
 async function fetchBook(id, env) {
+  const key = String(env.SUPABASE_ANON_KEY ?? '').trim();
+  if (!key) throw new UpstreamError('no-key');
+  const headers = { apikey: key, 'Content-Type': 'application/json' };
+  // The older anon key is a JWT and may also go as a Bearer token. Supabase's
+  // newer publishable key (sb_publishable_...) must not: the gateway rejects a
+  // Bearer that isn't a JWT. apikey alone works for both.
+  if (key.startsWith('eyJ')) headers.Authorization = `Bearer ${key}`;
   const res = await fetch(`${env.SUPABASE_URL}/rest/v1/rpc/share_book`, {
     method: 'POST',
-    headers: {
-      apikey: env.SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({ p_book_id: id }),
   });
-  if (!res.ok) throw new Error(`share_book ${res.status}`);
+  if (!res.ok) throw new UpstreamError(res.status);
   return res.json();
 }
 
@@ -84,9 +94,15 @@ async function render(id, url, env) {
     book = await fetchBook(id, env);
   } catch (err) {
     console.error('[book page]', err);
-    // The database or the key: show the page without a book, uncached.
+    // The database or the key: show the page without a book, uncached. The
+    // comment carries only the status (e.g. 401, no-key), never the key, so a
+    // failure can be diagnosed from outside.
     const tpl = await env.ASSETS.fetch(new Request(new URL('/b/', url.origin)));
-    return new Response(tpl.body, {
+    const status = String(err?.status ?? 'error').replace(/[^a-z0-9-]/gi, '');
+    const body = new HTMLRewriter()
+      .on('body', { element: (e) => e.append(`<!-- book data unavailable: ${status} -->`, { html: true }) })
+      .transform(tpl).body;
+    return new Response(body, {
       status: 503,
       headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', ...SECURITY_HEADERS },
     });
