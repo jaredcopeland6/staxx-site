@@ -37,6 +37,8 @@ Staxx is a social app, and most of the data above is visible to other signed-in 
 
 To run the core features of the app: showing your ranked shelf, predicting a "Personal Score" for books you haven't read yet based on your own ranking history, your imported Goodreads ratings and favorite genres if you have them, and your friends' rankings, and building the activity feed. We also use reports to review content and accounts against our Terms of Use, which can mean removing a review, profile picture, username, or display name, or suspending an account. We do not use your information for advertising, and we do not sell your information to anyone.
 
+When you rank a book, Staxx keeps the Personal Score it had predicted for it, so we can measure how accurate predictions are and improve them. Only you can see yours, and it is deleted with your account.
+
 To recommend books to everyone, Staxx also counts how often two books are read by the same people: for example, how many readers of *Fourth Wing* also read *Iron Flame*. These counts use only which books are on readers' shelves as read or ranked, which other signed-in users can already see. They never use your star ratings, scores, or reviews, and they never say who read what. A pair of books is counted only once at least five different readers have read both.
 
 ## Third-party services we use
