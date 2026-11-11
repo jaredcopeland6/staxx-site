@@ -161,8 +161,13 @@ export default {
     }
 
     const id = match[1].toLowerCase();
-    // One cache entry per book, whatever title the link carries.
-    const cacheKey = new Request(`${url.origin}/b/${id}/`, { method: 'GET' });
+    // One cache entry per book, whatever title the link carries, and per
+    // version of the template: a new deploy changes the template's ETag, so
+    // pages built from the old one (and pointing at its old files) are never
+    // served again, and a change shows at once rather than after an hour.
+    const tpl = await env.ASSETS.fetch(new Request(new URL('/b/', url.origin), { method: 'HEAD' }));
+    const version = (tpl.headers.get('etag') || 'none').replace(/[^a-zA-Z0-9]/g, '').slice(0, 40);
+    const cacheKey = new Request(`${url.origin}/b/${id}/?v=${version}`, { method: 'GET' });
     const cache = caches.default;
     const hit = await cache.match(cacheKey);
     if (hit) return hit;
