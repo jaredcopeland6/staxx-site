@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "What Staxx collects, who can see it, the services we use, and how to delete your account."
-updated: 2026-11-10
+updated: 2026-11-11
 ---
 
 Staxx is a social book-tracking app: you rank books you've read against each other, keep a shelf of what you want to read, and see what people you follow are reading. This page describes exactly what the app collects, why, and who can see it - matched to what the app actually does, not a generic template.
@@ -16,7 +16,7 @@ Staxx is a social book-tracking app: you rank books you've read against each oth
 - **Written reviews** - optional. If you write a review of a book you've ranked (up to 15,000 characters), it's saved with that ranking and shown with it.
 - **Pairwise comparison choices** - when you rank a book, the app asks you to compare it against a few books you've already ranked. We keep a permanent log of those choices so your ranking history can be audited and so the ranking algorithm can improve later without losing that history. This log is private to you - see "Who can see your information" below.
 - **Goodreads import** - optional. If you import your Goodreads export, the app reads the file on your phone and sends us, for each book, its title, author, ISBN, and Goodreads book number, your star rating, which shelf it's on, and the dates you read and added it. Your Goodreads reviews and private notes are removed on your phone and never sent. The imported books go on your shelf like any others. We keep the import's list of books for 30 days, so you can undo the import, and then delete it.
-- **Imported star ratings** - your Goodreads stars for books you haven't ranked in Staxx yet. Only you can see them, and we use them only to improve your own recommendations.
+- **Imported star ratings** - your Goodreads stars for books you haven't ranked in Staxx yet. Only you can see them, and we use them only to improve your own recommendations. They are not used in the shared reading counts described under "How we use your information".
 - **Favorite genres** - optional, picked when you sign up. Only you can see them, and we use them only to give your first recommendations a head start.
 - **Follows** - who you follow and who follows you.
 - **Tag suggestions** - if you suggest a descriptive tag (genre or vibe) for a book, we record which tag and which book; we do not publicly attribute a specific suggestion to your account in the app's display, but the row itself, like other social data in the app, is readable via the same access described below.
@@ -37,6 +37,8 @@ Staxx is a social app, and most of the data above is visible to other signed-in 
 
 To run the core features of the app: showing your ranked shelf, predicting a "Personal Score" for books you haven't read yet based on your own ranking history, your imported Goodreads ratings and favorite genres if you have them, and your friends' rankings, and building the activity feed. We also use reports to review content and accounts against our Terms of Use, which can mean removing a review, profile picture, username, or display name, or suspending an account. We do not use your information for advertising, and we do not sell your information to anyone.
 
+To recommend books to everyone, Staxx also counts how often two books are read by the same people: for example, how many readers of *Fourth Wing* also read *Iron Flame*. These counts use only which books are on readers' shelves as read or ranked, which other signed-in users can already see. They never use your star ratings, scores, or reviews, and they never say who read what. A pair of books is counted only once at least five different readers have read both.
+
 ## Third-party services we use
 
 - **Open Library** - when you search for, add, or import a book, we send that search (for an import, the book's title and author) to Open Library's public API to fetch its title, author, cover image, and description. No account information is included in that request.
@@ -53,7 +55,7 @@ We do not use any third-party advertising services. The app uses no analytics se
 
 ## Data retention and deletion
 
-You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, comparison history, Goodreads imports and imported star ratings, favorite genres, follows and followers, activity, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone.
+You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, comparison history, Goodreads imports and imported star ratings, favorite genres, follows and followers, activity, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone. Your books also stop counting toward the shared reading counts within a day.
 
 ## Children's privacy
 
