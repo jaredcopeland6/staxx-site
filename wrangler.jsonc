@@ -1,11 +1,24 @@
-// Cloudflare hosting: a static site, no server code. Cloudflare runs
-// `npm run build` and serves the dist/ folder it produces.
+// Cloudflare hosting: the static site Cloudflare builds with `npm run build`
+// (served from dist/), plus one small program, worker/index.js, that runs
+// only for shared book pages at /b/... (O-136). Every other address is the
+// static site exactly as before.
+//
+// The worker also needs SUPABASE_ANON_KEY, the public anon key the app uses,
+// set as a Secret in the Cloudflare dashboard (Workers > staxx-site >
+// Settings > Variables and Secrets). It is never written in this repo.
 {
   "name": "staxx-site",
   "compatibility_date": "2026-11-05",
+  "main": "./worker/index.js",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/b/*"]
+  },
+  "vars": {
+    "SUPABASE_URL": "https://aworimellnopbnhvacel.supabase.co"
+  },
+  "observability": { "enabled": true }
 }

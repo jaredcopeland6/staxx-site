@@ -11,6 +11,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   // og-card is only the source of the link-preview picture, not a real page.
-  integrations: [sitemap({ filter: (page) => !page.includes('/og-card/') })],
+  // /b/ is the shared-book template (worker/index.js fills it per book), not a page of its own.
+  integrations: [sitemap({ filter: (page) => !page.includes('/og-card/') && !page.includes('/b/') })],
   devToolbar: { enabled: false },
 });

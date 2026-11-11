@@ -1,0 +1,264 @@
+---
+// The shared book page, staxxbooks.com/b/<book id>/<title>/ (O-136, option A).
+// One template for every book: worker/index.js serves this page for each
+// /b/... address, after filling in the title, the link-preview tags and the
+// book's data (the #book-data script) from share_book(), and caches it.
+// Opened directly at /b/ it has no book and says so.
+//
+// Everything book-specific is drawn by the script at the bottom from that
+// data, as text (never as HTML), so a title can't inject anything.
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
+---
+<Base
+  title="A book on Staxx"
+  description="See what this book is like, and what you'd score it, on Staxx."
+  themeColor="#F3EBDD"
+>
+  <div class="on-paper bk-page">
+    <div style="border-bottom: 1px solid var(--divider)">
+      <Header light ctaHref="#join" />
+    </div>
+
+    <main id="bk" class="bk" data-ready="false">
+      <section class="bk-hero">
+        <div class="bk-cover-wrap">
+          <img id="bk-cover" class="bk-cover" alt="" width="150" height="225" hidden>
+          <div id="bk-cover-fallback" class="bk-cover bk-cover-fallback" aria-hidden="true">
+            <span id="bk-cover-title"></span>
+          </div>
+        </div>
+        <h1 id="bk-title">We couldn't find that book</h1>
+        <p id="bk-byline" class="bk-byline">The link may be old. Try searching for it in Staxx.</p>
+        <ul id="bk-tags" class="bk-tags" aria-label="Genres and tropes"></ul>
+      </section>
+
+      <div class="bk-body">
+        <div id="bk-scores" class="bk-scores" hidden>
+          <div id="bk-crowd" class="bk-card bk-stat" hidden>
+            <span id="bk-avg" class="bk-stat-num"></span>
+            <span class="bk-stat-label">Staxx readers</span>
+            <span id="bk-count" class="bk-stat-sub"></span>
+          </div>
+          <div class="bk-card bk-stat bk-locked">
+            <span class="bk-stat-num bk-blur" aria-hidden="true">8.6</span>
+            <span class="bk-stat-label">For you</span>
+            <span class="bk-stat-sub">Join to see your predicted score</span>
+            <span class="bk-lock" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <section id="bk-vibe" class="bk-card" aria-labelledby="bk-vibe-h" hidden>
+          <h2 id="bk-vibe-h">The vibe</h2>
+          <div id="bk-vibe-rows" class="bk-vibe-rows"></div>
+          <p class="bk-note">
+            <span class="bk-ring" aria-hidden="true"></span>
+            <span>On Staxx, a ring on each line shows what <strong>you</strong> usually read, so you can see at a glance if this is your kind of book.</span>
+          </p>
+        </section>
+
+        <section id="bk-similar" class="bk-card" aria-labelledby="bk-similar-h" hidden>
+          <h2 id="bk-similar-h">Similar reads</h2>
+          <div class="bk-similar">
+            <div id="bk-similar-row" class="bk-similar-row bk-blur" aria-hidden="true"></div>
+            <span class="bk-lock-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+              See them, with your scores, on Staxx
+            </span>
+          </div>
+        </section>
+
+        <section id="join" class="bk-join" aria-labelledby="bk-join-h">
+          <h2 id="bk-join-h">Would you like it?</h2>
+          <p>Rank the books you've read against each other. Staxx learns your taste and predicts your score for every book, starting with this one.</p>
+          <WaitlistForm id="book-waitlist" source="book" />
+          <a id="bk-open" class="bk-open" href="staxx://" hidden>Already on Staxx? Open this book in the app</a>
+        </section>
+
+        <section id="bk-store" class="bk-store" aria-labelledby="bk-store-h" hidden>
+          <h2 id="bk-store-h">Find it at</h2>
+          <a id="bk-store-link" href="https://books.apple.com/" rel="noopener">
+            <img src="/badges/get-it-on-apple-books.svg" alt="Get it on Apple Books" height="40">
+          </a>
+          <p id="bk-disclosure" class="bk-disclosure" hidden></p>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+
+  <script id="book-data" type="application/json">null</script>
+
+  <script>
+    type Vibe = { low: string; high: string; value: number };
+    type Book = {
+      id: string;
+      title: string;
+      author: string | null;
+      cover_url: string | null;
+      cover_fallback_url: string | null;
+      series_name: string | null;
+      series_position: number | string | null;
+      tags: string[];
+      vibe: Vibe[];
+      readers: number | null;
+      average: number | null;
+      similar: { title: string; author: string | null; cover_url: string | null }[];
+      store: { name: string; url: string; disclosure: string | null } | null;
+    };
+
+    const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+    const el = (tag: string, cls?: string, text?: string) => {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    };
+
+    let book: Book | null = null;
+    try {
+      book = JSON.parse($('book-data').textContent || 'null');
+    } catch {
+      book = null;
+    }
+
+    if (book) {
+      const b = book;
+      $('bk-title').textContent = b.title;
+      const series = b.series_name
+        ? ` · ${b.series_name}${b.series_position != null ? `, book ${Number(b.series_position)}` : ''}`
+        : '';
+      $('bk-byline').textContent = `${b.author ? `by ${b.author}` : ''}${series}`.replace(/^ · /, '');
+
+      // Cover: Apple's art when there is a store link to sit beside it (O-81),
+      // otherwise Open Library's; a drawn tile if neither loads.
+      const coverSrc = b.store ? b.cover_url || b.cover_fallback_url : b.cover_fallback_url || b.cover_url;
+      $('bk-cover-title').textContent = b.title;
+      if (coverSrc) {
+        const img = $<HTMLImageElement>('bk-cover');
+        img.alt = `Cover of ${b.title}`;
+        img.onload = () => {
+          img.hidden = false;
+          $('bk-cover-fallback').hidden = true;
+        };
+        img.src = coverSrc;
+      }
+
+      const tags = $('bk-tags');
+      for (const t of b.tags) tags.append(el('li', 'bk-tag', t));
+
+      $('bk-scores').hidden = false;
+      if (b.readers != null && b.average != null) {
+        $('bk-crowd').hidden = false;
+        $('bk-avg').textContent = Number(b.average).toFixed(1);
+        $('bk-count').textContent = `Average from ${b.readers} rankings`;
+      } else {
+        $('bk-scores').classList.add('bk-scores-one');
+      }
+
+      if (b.vibe.length) {
+        const rows = $('bk-vibe-rows');
+        for (const v of b.vibe) {
+          const row = el('div', 'bk-vibe-row');
+          row.setAttribute('role', 'img');
+          row.setAttribute('aria-label', `${v.low} to ${v.high}: ${v.value} out of 5`);
+          const ends = el('div', 'bk-ends');
+          ends.append(el('span', '', v.low), el('span', '', v.high));
+          const track = el('div', 'bk-track');
+          const dot = el('span', 'bk-dot');
+          dot.style.left = `calc(${(Number(v.value) / 5) * 100}% - 7px)`;
+          track.append(dot);
+          row.append(ends, track);
+          rows.append(row);
+        }
+        $('bk-vibe').hidden = false;
+      }
+
+      if (b.similar.length) {
+        const row = $('bk-similar-row');
+        for (const s of b.similar.slice(0, 4)) {
+          const tile = el('span', 'bk-mini');
+          if (s.cover_url) {
+            const img = document.createElement('img');
+            img.alt = '';
+            img.loading = 'lazy';
+            img.src = s.cover_url;
+            tile.append(img);
+          }
+          row.append(tile);
+        }
+        $('bk-similar').hidden = false;
+      }
+
+      const open = $<HTMLAnchorElement>('bk-open');
+      open.href = `staxx://b/${b.id}`;
+      open.hidden = false;
+
+      if (b.store) {
+        $<HTMLAnchorElement>('bk-store-link').href = b.store.url;
+        if (b.store.disclosure) {
+          const d = $('bk-disclosure');
+          d.textContent = b.store.disclosure;
+          d.hidden = false;
+        }
+        $('bk-store').hidden = false;
+      }
+      $('bk').dataset.ready = 'true';
+    }
+  </script>
+</Base>
+
+<style is:global>
+  .bk-page { background: var(--bg); }
+  .bk { max-width: 640px; margin: 0 auto; }
+  .bk-hero { background: var(--band); padding: 28px 20px 26px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .bk-cover-wrap { width: 150px; height: 225px; }
+  .bk-cover { width: 150px; height: 225px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 4px rgba(23,28,41,.12), 0 18px 36px rgba(23,28,41,.28); }
+  .bk-cover-fallback { display: flex; align-items: flex-start; padding: 14px; background: var(--ink); color: var(--ink-brass); font-family: var(--serif); font-size: 20px; line-height: 1.2; text-align: left; }
+  .bk-cover-fallback[hidden] { display: none; }
+  .bk-hero h1 { margin: 18px 0 0; font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.12; }
+  .bk-byline { margin: 6px 0 0; font-size: 16px; color: var(--text-2); }
+  .bk-tags { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .bk-tag { padding: 5px 12px; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); font-weight: 600; font-size: 14px; }
+  .bk-body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .bk-card { background: var(--surface); border-radius: 18px; padding: 16px; box-shadow: 0 1px 2px rgba(23,28,41,.06), 0 8px 24px rgba(23,28,41,.06); }
+  .bk-card h2, .bk-join h2, .bk-store h2 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 21px; }
+  .bk-scores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .bk-scores[hidden] { display: none; }
+  .bk-scores-one { grid-template-columns: minmax(0, 1fr); }
+  .bk-stat { position: relative; display: flex; flex-direction: column; gap: 2px; }
+  .bk-stat[hidden] { display: none; }
+  .bk-stat-num { font-family: var(--serif); font-weight: 600; font-size: 32px; line-height: 1.1; color: var(--accent); }
+  .bk-stat-label { font-weight: 700; font-size: 15px; }
+  .bk-stat-sub { font-size: 14px; color: var(--muted); }
+  .bk-blur { filter: blur(7px); user-select: none; }
+  .bk-lock { position: absolute; top: 18px; left: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--ink-text); display: flex; align-items: center; justify-content: center; }
+  .bk-vibe-rows { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+  .bk-ends { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
+  .bk-track { position: relative; height: 14px; margin-top: 5px; }
+  .bk-track::before { content: ''; position: absolute; left: 0; right: 0; top: 4px; height: 6px; border-radius: 3px; background: var(--surface-muted); }
+  .bk-dot { position: absolute; top: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
+  .bk-note { margin: 14px 0 0; padding: 12px; border-radius: 14px; background: var(--bg); display: flex; gap: 10px; align-items: center; font-size: 14px; line-height: 1.4; color: var(--text-2); }
+  .bk-ring { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px dashed var(--muted); }
+  .bk-similar { position: relative; margin-top: 12px; }
+  .bk-similar-row { display: flex; gap: 10px; }
+  .bk-mini { width: 70px; height: 105px; border-radius: 4px; overflow: hidden; background: var(--surface-muted); }
+  .bk-mini img { width: 100%; height: 100%; object-fit: cover; }
+  .bk-lock-pill { position: absolute; inset: 0; margin: auto; height: fit-content; width: fit-content; max-width: 90%; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 16px; background: var(--ink); color: var(--ink-text); font-weight: 700; font-size: 14px; }
+  .bk-join { background: var(--ink); color: var(--ink-text); border-radius: 22px; padding: 24px 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; scroll-margin-top: 16px; }
+  .bk-join p { margin: 0; color: var(--ink-text-2); font-size: 16px; line-height: 1.5; }
+  .bk-open { min-height: 44px; display: flex; align-items: center; color: var(--ink-accent-text); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .bk-open:hover { color: var(--ink-text); }
+  .bk-open[hidden] { display: none; }
+  .bk-store { padding: 4px 4px 8px; display: flex; flex-direction: column; gap: 10px; }
+  .bk-store[hidden] { display: none; }
+  .bk-store h2 { font-family: var(--sans); font-weight: 700; font-size: 16px; }
+  .bk-store img { height: 40px; width: auto; }
+  .bk-disclosure { margin: 0; font-size: 13px; color: var(--muted); }
+  .bk [hidden] { display: none !important; }
+</style>
