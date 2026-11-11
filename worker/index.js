@@ -16,6 +16,17 @@
 const SITE = 'https://staxxbooks.com';
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const CACHE_SECONDS = 3600;
+// Browsers and phones keep their own copy only briefly, so a page change
+// reaches someone who already opened the link within a minute. Cloudflare's
+// copy (CACHE_SECONDS) is the one that spares the database.
+const BROWSER_SECONDS = 60;
+
+/** The same response, with the Cache-Control a browser should see. */
+function forBrowser(res) {
+  const out = new Response(res.body, res);
+  if (out.status === 200) out.headers.set('Cache-Control', `public, max-age=${BROWSER_SECONDS}`);
+  return out;
+}
 
 // The same headers public/_headers gives the static pages.
 const SECURITY_HEADERS = {
@@ -170,10 +181,10 @@ export default {
     const cacheKey = new Request(`${url.origin}/b/${id}/?v=${version}`, { method: 'GET' });
     const cache = caches.default;
     const hit = await cache.match(cacheKey);
-    if (hit) return hit;
+    if (hit) return forBrowser(hit);
 
     const res = await render(id, url, env);
     if (res.status === 200 || res.status === 404) ctx.waitUntil(cache.put(cacheKey, res.clone()));
-    return res;
+    return forBrowser(res);
   },
 };
