@@ -20,5 +20,9 @@
   "vars": {
     "SUPABASE_URL": "https://aworimellnopbnhvacel.supabase.co"
   },
+  // Keep variables added in the Cloudflare dashboard when a push redeploys.
+  // Without this, a deploy replaces dashboard Text variables with the list
+  // above, which is how the first SUPABASE_ANON_KEY disappeared (2026-11-11).
+  "keep_vars": true,
   "observability": { "enabled": true }
 }
