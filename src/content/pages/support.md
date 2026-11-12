@@ -1,12 +1,12 @@
 ---
 title: "Support"
 description: "Help with Staxx: reviews, reporting, blocking, your profile, deleting your account, and how to contact us."
-updated: 2026-11-05
+updated: 2026-11-11
 ---
 
 ## What Staxx is
 
-Staxx is a book-ranking app. Instead of giving a book a star rating, you say roughly how you felt about it and then compare it against a few books you have already ranked. Those comparisons place it on a 0-10 scale and in order against everything else you have read. You keep two separate lists, fiction and non-fiction, and a To Be Read list of what is coming next. You can follow friends and see what they are reading and how they ranked it.
+Staxx is a book-ranking app. Instead of giving a book a star rating, you say roughly how you felt about it and then compare it against a few books you have already ranked. Those comparisons place it on a 0-10 scale and in order against everything else you have read. You keep two separate lists, fiction and non-fiction, and a Want to read list of what is coming next. You can follow friends and see what they are reading and how they ranked it.
 
 ## How do I write or change a review?
 
@@ -16,7 +16,7 @@ To add, change, or delete a review later, open the book and use **Edit** under "
 
 ## How do I report someone?
 
-Open their profile, tap the **···** menu at the top right, and choose **Report**. To report a specific review, tap **Report** underneath it in the feed. Pick a reason and add a note if you want to. **We review every report within 24 hours.** You will also be offered the option to block them at the same time.
+Open their profile, tap the **···** menu at the top right, and choose **Report**. To report a specific review, tap the **···** on it (in the Feed or on their profile) and choose **Report review**. Pick a reason and add a note if you want to. **We review every report within 24 hours.** You will also be offered the option to block them at the same time.
 
 ## How do I block someone?
 
@@ -30,13 +30,13 @@ Go to the **Profile** tab and tap your picture, then choose a photo. It is resiz
 
 ## How do I switch between light and dark?
 
-**Profile › Settings › Appearance**, then System, Light or Dark. System follows your phone's own setting. Colours also shift between fiction and non-fiction, which is intentional.
+**Profile › Settings › Appearance**, then System, Light or Dark. System follows your phone's own setting.
 
 ## How do I delete my account?
 
 Go to **Profile › Settings › Delete account**, type `DELETE` to confirm, and tap the button.
 
-This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and To Be Read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile, and your profile picture file. Books you added to the shared catalog stay, because other people use them, but they are no longer linked to you.
+This is immediate and cannot be undone. It removes your account, your rankings and their history, your shelf and Want to read list, every comparison you have made, your follows and followers, your activity, your tag suggestions, your profile, and your profile picture file. Books you added to the shared catalog stay, because other people use them, but they are no longer linked to you.
 
 ## I ranked the wrong book
 
@@ -44,7 +44,7 @@ Open the book and choose **Remove from my rankings**, or swipe left on it in you
 
 ## A book's details are wrong
 
-Book titles, authors, covers, and descriptions come from [Open Library](https://openlibrary.org) and Apple Books. If something is wrong, email us and we will correct it in our copy.
+Book titles, authors, covers, and descriptions come from [Open Library](https://openlibrary.org) and Apple Books. If something is wrong, open the book, tap its **···** menu and choose **Report a problem**, or email us. We will correct it in our copy.
 
 ## Contact
 

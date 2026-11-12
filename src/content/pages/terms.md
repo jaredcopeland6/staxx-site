@@ -1,7 +1,7 @@
 ---
 title: "Terms of Use"
 description: "The rules for using Staxx: who can join, what you may post, and how reports and blocking work."
-updated: 2026-11-05
+updated: 2026-11-11
 ---
 
 These are the rules for using Staxx. They are short on purpose. By creating an account you agree to them, along with our [Privacy Policy](/privacy/).
@@ -30,7 +30,7 @@ A review can be up to 15,000 characters. You can edit or delete your own reviews
 
 ## Reporting, and what we do about it
 
-Every profile has a **···** menu with a **Report** option, and every review has a **Report** link beneath it. Tell us what is wrong and, if you like, add a note.
+Every profile has a **···** menu with a **Report** option, and every review has a **···** menu with **Report review**. Tell us what is wrong and, if you like, add a note.
 
 **We review every report within 24 hours.** If we agree that content breaks these rules we will act on it, which can mean removing a profile picture or review, resetting a username, clearing a display name, suspending the account, or deleting it. Accounts that repeat the behaviour, or that do something serious once, are removed without warning. We do not tell the person who reported what we decided about someone else's account.
 
