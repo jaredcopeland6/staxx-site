@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "What Staxx collects, who can see it, the services we use, and how to delete your account."
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 Staxx is a social book-tracking app: you rank books you've read against each other, keep a shelf of what you want to read, and see what people you follow are reading. This page describes exactly what the app collects, why, and who can see it - matched to what the app actually does, not a generic template.
@@ -12,7 +12,8 @@ Staxx is a social book-tracking app: you rank books you've read against each oth
 - **Username** - your unique @handle, which other users see.
 - **Display name** - optional, up to 40 characters. If you set one, it's shown on your profile, in the activity feed, and in people search, alongside your username. It can be any name you like, including your real name. You can change or clear it at any time in Edit profile.
 - **Profile picture** - optional. If you choose one, the image is resized on your device and stored by our backend provider. You can replace it at any time, and deleting your account deletes it. See "Who can see your information" for an important note about how it is served.
-- **Books you shelve and rank** - which books you've marked as to-be-read, currently reading, or read, plus the 0-10 score and rank position each ranked book receives, and the date you finished each book you mark read (filled in automatically when you mark it read, and editable).
+- **Books you shelve and rank** - which books you've marked as to-be-read, currently reading, or read, plus the 0-10 score and rank position each ranked book receives, and the date you finished each book you mark read (filled in automatically when you mark it read, and editable). Books added in bulk without a date (from a Goodreads import, or the favorites you pick at sign-up) are marked as added on that day, not finished on it, until you enter a date.
+- **Reading goal** - optional. If you set a goal for a year, we store the year, whether it counts books or pages, the number you're aiming for, and whether you chose to show it on your profile. Your progress is worked out from your read books; it isn't stored separately.
 - **Written reviews** - optional. If you write a review of a book you've ranked (up to 15,000 characters), it's saved with that ranking and shown with it.
 - **Pairwise comparison choices** - when you rank a book, the app asks you to compare it against a few books you've already ranked. We keep a permanent log of those choices so your ranking history can be audited and so the ranking algorithm can improve later without losing that history. This log is private to you - see "Who can see your information" below.
 - **Goodreads import** - optional. If you import your Goodreads export, the app reads the file on your phone and sends us, for each book, its title, author, ISBN, and Goodreads book number, your star rating, which shelf it's on, and the dates you read and added it. Your Goodreads reviews and private notes are removed on your phone and never sent. The imported books go on your shelf like any others. We keep the import's list of books for 30 days, so you can undo the import, and then delete it.
@@ -31,6 +32,8 @@ We do not ask for your real name, phone number, address, payment information, or
 ## Who can see your information
 
 Staxx is a social app, and most of the data above is visible to other signed-in users, not only people who follow you - this is true today of your username and display name, your rankings and written reviews, your shelf (including finish dates), your follows/followers list, and your activity. Some things are private: only you can see your pairwise comparison choices, your Goodreads import, your imported star ratings, your favorite genres, the books you've hidden from your picks, and your list of blocked accounts, and nobody you report can see that you reported them - reports are read only by Staxx's moderator. Someone you have blocked can't see any of your information in the app, and you can't see theirs.
+
+**Reading goals and Stats.** Your reading goal is private unless you turn on "Show on my profile"; then people who can see your profile see the goal and your progress toward it. The Stats tab on a profile (totals, books by month, genres, vibe, scores, and similar) is built only from what the person looking can already see: your rankings, your read books and their finish dates, and the books' own details. Its taste match ("You and X agree N% of the time") compares only books you have both ranked. On your own profile, Stats can also show which person you follow has the closest taste to yours; only you see that. Stats and taste match never use your imported star ratings or your favorite genres.
 
 **Shared book pages are public.** When you share a book from Staxx, the link opens a page on staxxbooks.com that anyone can see without signing in. It shows the book's details (title, author, cover, genres, and what the book is like), plus Staxx's average score for it once at least five readers have ranked it. It never shows who ranked it, what anyone scored it, or who shared it. The score you send with a share is only in the message you write.
 
@@ -60,7 +63,7 @@ We do not use any third-party advertising services. The app uses no analytics se
 
 ## Data retention and deletion
 
-You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, comparison history, Goodreads imports and imported star ratings, favorite genres, books hidden from your picks, follows and followers, activity, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone. Your books also stop counting toward the shared reading counts within a day.
+You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, reading goals, comparison history, Goodreads imports and imported star ratings, favorite genres, books hidden from your picks, follows and followers, activity, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone. Your books also stop counting toward the shared reading counts within a day.
 
 ## Children's privacy
 
