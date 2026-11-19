@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "What Staxx collects, who can see it, the services we use, and how to delete your account."
-updated: 2026-11-12
+updated: 2026-11-19
 ---
 
 Staxx is a social book-tracking app: you rank books you've read against each other, keep a shelf of what you want to read, and see what people you follow are reading. This page describes exactly what the app collects, why, and who can see it - matched to what the app actually does, not a generic template.
@@ -23,6 +23,7 @@ Staxx is a social book-tracking app: you rank books you've read against each oth
 - **Follows** - who you follow and who follows you.
 - **Tag suggestions** - if you suggest a descriptive tag (genre or vibe) for a book, we record which tag and which book; we do not publicly attribute a specific suggestion to your account in the app's display, but the row itself, like other social data in the app, is readable via the same access described below.
 - **Activity** - a record of your shelf changes and rankings, used to build the activity feed shown to people who follow you.
+- **When you open the app** - each day you open Staxx, we record the date and how many times you opened it that day (at most once every 30 minutes), linked to your account. We use it only to understand how the app is used, such as how many people come back each week. Only the Staxx team sees it, in our admin tools; it's never shown to other users or sent to any outside service. Deleting your account deletes it.
 - **Blocks and reports** - if you block someone, we record that so the two of you are hidden from each other. If you report someone, we record who you reported, the reason you picked, and any note you add. We also record when you agreed to our Terms of Use and this policy at sign-up.
 - **Book problem reports** - if you tell us something is wrong with a book's page (such as a wrong cover or a missing description), we record the book, the problems you picked, and any note you add. Only the Staxx team sees them. A daily email to the team lists new ones: the book, the problems, and the notes, but not who sent them.
 - **Waitlist email (website only)** - if you join the waitlist on staxxbooks.com, we store the email address you enter, which form you used, and when, and, if we send you an invite to the app, when we sent it. We use it only to tell you when Staxx is available, and it isn't linked to an app account. To be removed, email [admin@staxxbooks.com](mailto:admin@staxxbooks.com).
@@ -31,7 +32,7 @@ We do not ask for your real name, phone number, address, payment information, or
 
 ## Who can see your information
 
-Staxx is a social app, and most of the data above is visible to other signed-in users, not only people who follow you - this is true today of your username and display name, your rankings and written reviews, your shelf (including finish dates), your follows/followers list, and your activity. Some things are private: only you can see your pairwise comparison choices, your Goodreads import, your imported star ratings, your favorite genres, the books you've hidden from your picks, and your list of blocked accounts, and nobody you report can see that you reported them - reports are read only by Staxx's moderator. Someone you have blocked can't see any of your information in the app, and you can't see theirs.
+Staxx is a social app, and most of the data above is visible to other signed-in users, not only people who follow you - this is true today of your username and display name, your rankings and written reviews, your shelf (including finish dates), your follows/followers list, and your activity. Some things are private: only you can see your pairwise comparison choices, your Goodreads import, your imported star ratings, your favorite genres, the books you've hidden from your picks, and your list of blocked accounts, and nobody you report can see that you reported them - reports are read only by Staxx's moderator. The record of when you open the app is seen only by the Staxx team. Someone you have blocked can't see any of your information in the app, and you can't see theirs.
 
 **Reading goals and Stats.** Your reading goal is private unless you turn on "Show on my profile"; then people who can see your profile see the goal and your progress toward it. The Stats tab on a profile (totals, books by month, genres, vibe, scores, and similar) is built only from what the person looking can already see: your rankings, your read books and their finish dates, and the books' own details. Its taste match ("You and X agree N% of the time") compares only books you have both ranked. On your own profile, Stats can also show which person you follow has the closest taste to yours; only you see that. Stats and taste match never use your imported star ratings or your favorite genres.
 
@@ -47,6 +48,8 @@ When you rank a book, Staxx keeps the Personal Score it had predicted for it, so
 
 To recommend books to everyone, Staxx also counts how often two books are read by the same people: for example, how many readers of *Fourth Wing* also read *Iron Flame*. These counts use only which books are on readers' shelves as read or ranked, which other signed-in users can already see. They never use your star ratings, scores, or reviews, and they never say who read what. A pair of books is counted only once at least five different readers have read both.
 
+To understand how Staxx is used, the Staxx team looks at counts such as how many readers open the app each week, how many come back in the weeks after signing up, and how often each reader opens the app, ranks, compares, or shelves a book. These counts come from the days you open the app and from your rankings, comparisons, and shelf, are seen only by the Staxx team, and are never used for advertising or shared with anyone.
+
 ## Third-party services we use
 
 - **Open Library** - when you search for, add, or import a book, we send that search (for an import, the book's title and author) to Open Library's public API to fetch its title, author, cover image, and description. No account information is included in that request.
@@ -59,11 +62,11 @@ To recommend books to everyone, Staxx also counts how often two books are read b
 - **Resend** - sends Staxx's emails, such as the code to reset your password. To deliver one, it receives your email address and the message itself. We don't use it for marketing.
 - **Sentry** - if the app crashes or hits an error, it sends a crash report to Sentry so we can fix it: what went wrong in the app's code, what the app was doing just before (such as which screen was open), and your device model, system version, and app version. Crash reports don't include your email, username, or reading history. Like any server, Sentry can see your device's IP address when a report arrives.
 
-We do not use any third-party advertising services. The app uses no analytics service today; the website counts visits with Cloudflare Web Analytics, which sets no cookies.
+We do not use any third-party advertising services. The app uses no third-party analytics service: the only record of app use is the daily open count described above, which stays with us. The website counts visits with Cloudflare Web Analytics, which sets no cookies.
 
 ## Data retention and deletion
 
-You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, reading goals, comparison history, Goodreads imports and imported star ratings, favorite genres, books hidden from your picks, follows and followers, activity, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone. Your books also stop counting toward the shared reading counts within a day.
+You can permanently delete your account at any time from inside the app: **Profile → Settings → Delete account**. Deleting your account immediately and permanently removes your rankings and written reviews, shelf items and finish dates, reading goals, comparison history, Goodreads imports and imported star ratings, favorite genres, books hidden from your picks, follows and followers, activity, the record of when you opened the app, tag suggestions, blocks, reports you've filed (about people or books), your profile picture, and your profile (including your username and display name) - this cannot be undone. Your books also stop counting toward the shared reading counts within a day.
 
 ## Children's privacy
 
